@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
@@ -54,6 +54,10 @@ function Game() {
     const status = winner
         ? 'Winner: ' + winner
         : 'Next player: ' + (xIsNext ? 'X' : 'O');
+
+    useEffect(function updateTitle() {
+        document.title = status;
+    });
 
     const moves = history.map((step, move) => {
         const desc = move ?

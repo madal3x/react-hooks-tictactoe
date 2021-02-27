@@ -57,7 +57,7 @@ function Game() {
 
     useEffect(function updateTitle() {
         document.title = status;
-    });
+    }, [status]);
 
     const moves = history.map((step, move) => {
         const desc = move ?

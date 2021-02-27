@@ -71,17 +71,17 @@ function Game() {
     });
 
     function handleClick(i) {
-        const curHistory = history.slice(0, stepNumber + 1);
-        const current = curHistory[curHistory.length - 1];
+        const newHistory = history.slice(0, stepNumber + 1);
+        const current = newHistory[newHistory.length - 1];
         const squares = current.squares.slice();
         if (calculateWinner(squares) || squares[i]) {
             return;
         }
         squares[i] = xIsNext ? 'X' : 'O';
-        setHistory(curHistory.concat([{
+        setHistory(newHistory.concat([{
             squares: squares,
         }]));
-        setStepNumber(curHistory.length);
+        setStepNumber(newHistory.length);
         setXIsNext(!xIsNext);
     }
 

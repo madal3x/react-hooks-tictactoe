@@ -50,7 +50,7 @@ function Game() {
     }
 
     const current = history[stepNumber];
-    const winner = calculateWinner(current.squares);
+    const winner = winnerIs(current.squares);
     const status = winner
         ? 'Winner: ' + winner
         : 'Next player: ' + (xIsNext ? 'X' : 'O');
@@ -70,11 +70,11 @@ function Game() {
         );
     });
 
-    function handleClick(i) {
+    function makeMove(i) {
         const newHistory = history.slice(0, stepNumber + 1);
         const current = newHistory[newHistory.length - 1];
         const squares = current.squares.slice();
-        if (calculateWinner(squares) || squares[i]) {
+        if (winnerIs(squares) || squares[i]) {
             return;
         }
         squares[i] = xIsNext ? 'X' : 'O';
@@ -90,7 +90,7 @@ function Game() {
             <div className="game-board">
                 <Board
                     squares={current.squares}
-                    onClick={(i) => handleClick(i)}
+                    onClick={(i) => makeMove(i)}
                 />
             </div>
             <div className="game-info">
@@ -101,7 +101,7 @@ function Game() {
     );
 }
 
-function calculateWinner(squares) {
+function winnerIs(squares) {
     const lines = [
         [0, 1, 2],
         [3, 4, 5],
